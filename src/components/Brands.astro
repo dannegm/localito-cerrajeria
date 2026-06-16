@@ -1,0 +1,49 @@
+---
+const brands = [
+  'Volkswagen', 'Audi', 'BMW', 'Fiat', 'Alfa Romeo',
+  'SEAT', 'Mazda', 'Toyota', 'Honda', 'Nissan',
+  'Chevrolet', 'Ford', 'Hyundai', 'Kia', 'Renault',
+]
+---
+
+<section class="py-16 sm:py-20 px-5 sm:px-8 border-t border-border bg-base overflow-hidden">
+  <div class="max-w-7xl mx-auto">
+    <p class="text-center text-gray-600 text-sm sm:text-base font-bold uppercase tracking-widest mb-10">
+      Trabajamos con todas las marcas
+    </p>
+
+    <div class="relative">
+      <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-r from-base to-transparent pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 bg-gradient-to-l from-base to-transparent pointer-events-none" aria-hidden="true"></div>
+
+      <div class="overflow-hidden">
+        <div class="marquee-track flex gap-4 sm:gap-6 w-max">
+          {[...brands, ...brands].map((brand) => (
+            <div class="flex items-center gap-2 shrink-0 bg-surface border border-border rounded-full px-5 py-2.5 hover:border-amber-400 hover:bg-amber-50 transition-all duration-300 cursor-default group">
+              <div class="w-2 h-2 rounded-full bg-amber-500 shrink-0"></div>
+              <span class="text-gray-800 text-sm font-semibold whitespace-nowrap group-hover:text-amber-800 transition-colors">
+                {brand}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-track {
+    animation: marquee 32s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+</style>
