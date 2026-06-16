@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css'
 const { title = 'Cerrajería GAMA Express | Apertura de Chapas y Llaves con Chip', description = 'Especialistas en apertura de chapas, codificación de llaves con chip, clonación y reparación de controles. Servicio express para todo tipo de vehículos. Edwing García.' } = Astro.props
 ---
 <!doctype html>
@@ -19,13 +20,6 @@ const { title = 'Cerrajería GAMA Express | Apertura de Chapas y Llaves con Chip
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body class="bg-base text-white font-sans antialiased">
     <slot />
