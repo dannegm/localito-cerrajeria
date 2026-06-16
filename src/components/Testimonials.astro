@@ -1,20 +1,20 @@
 ---
 const testimonials = [
   {
-    name: 'Ana M.',
-    location: 'CDMX',
+    name: 'Sra. Ana M.',
+    location: 'Héroes de Ozumbilla',
     stars: 5,
     text: 'Me quedé sin llaves a las 11 de la noche y en 20 minutos ya estaba adentro de mi carro. Muy rápido y honesto con el precio.',
   },
   {
-    name: 'Carlos V.',
-    location: 'Naucalpan',
+    name: 'Sr. Carlos V.',
+    location: 'Real Verona',
     stars: 5,
     text: 'Programó la llave de mi Audi sin problema. Cobró lo que acordamos de inicio, sin sorpresas. Lo recomiendo sin pensarlo.',
   },
   {
-    name: 'Sofía R.',
-    location: 'Tlalnepantla',
+    name: 'Sra. Sofía R.',
+    location: 'Bosques de los Héroes',
     stars: 5,
     text: 'Excelente servicio. Me clonó el control de la moto en menos de una hora. Muy profesional y amable. Definitivamente vuelvo.',
   },
@@ -47,7 +47,7 @@ const testimonials = [
 
           <div class="flex items-center gap-2.5 pt-2 border-t border-white/10">
             <div class="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
-              <span class="text-brand text-sm font-bold">{t.name[0]}</span>
+              <span class="text-brand text-sm font-bold">{t.name.split(' ').slice(-2)[0][0]}</span>
             </div>
             <div>
               <p class="text-white text-sm font-bold leading-none">{t.name}</p>

@@ -16,7 +16,7 @@ export default {
         elevated: '#ECEEF5',
         border: 'rgba(0,0,0,0.09)',
         brand: '#FBBB24',
-        navy: '#080C1A',
+        navy: '#183657',
       },
       backgroundImage: {
         'hero-glow':
