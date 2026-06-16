@@ -5,18 +5,21 @@ const testimonials = [
     location: 'Héroes de Ozumbilla',
     stars: 5,
     text: 'Me quedé sin llaves a las 11 de la noche y en 20 minutos ya estaba adentro de mi carro. Muy rápido y honesto con el precio.',
+    avatar: 'https://avatarapi.runflare.run/public/girl?username=ana',
   },
   {
     name: 'Sr. Carlos V.',
     location: 'Real Verona',
     stars: 5,
     text: 'Programó la llave de mi Audi sin problema. Cobró lo que acordamos de inicio, sin sorpresas. Lo recomiendo sin pensarlo.',
+    avatar: 'https://avatarapi.runflare.run/public/boy?username=carlos',
   },
   {
     name: 'Sra. Sofía R.',
     location: 'Bosques de los Héroes',
     stars: 5,
     text: 'Excelente servicio. Me clonó el control de la moto en menos de una hora. Muy profesional y amable. Definitivamente vuelvo.',
+    avatar: 'https://avatarapi.runflare.run/public/girl?username=sofia',
   },
 ]
 ---
@@ -46,12 +49,14 @@ const testimonials = [
           <p class="text-gray-200 text-sm leading-relaxed font-medium flex-1">"{t.text}"</p>
 
           <div class="flex items-center gap-2.5 pt-2 border-t border-white/10">
-            <div class="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
-              <span class="text-brand text-sm font-bold">{t.name.split(' ').slice(-2)[0][0]}</span>
-            </div>
+            <img
+              src={t.avatar}
+              alt={t.name}
+              class="w-9 h-9 rounded-full object-cover shrink-0 bg-brand/20"
+            />
             <div>
               <p class="text-white text-sm font-bold leading-none">{t.name}</p>
-              <p class="text-gray-500 text-xs font-semibold mt-0.5">{t.location}</p>
+              <p class="text-white/70 text-xs font-semibold mt-0.5">{t.location}</p>
             </div>
           </div>
         </div>
