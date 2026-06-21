@@ -1,6 +1,48 @@
 ---
 import '../styles/global.css'
-const { title = 'Cerrajería GAMA Express | Apertura de Chapas y Llaves con Chip', description = 'Especialistas en apertura de chapas, codificación de llaves con chip, clonación y reparación de controles. Servicio express para todo tipo de vehículos. Edwing García.' } = Astro.props
+
+const {
+  title = 'Cerrajería GAMA Express | Cerrajero en Tecámac y Héroes de Ozumbilla',
+  description = 'Cerrajero a domicilio en Tecámac, Héroes de Ozumbilla y zona norte CDMX. Apertura de chapas, llaves con chip, clonación de controles. Servicio express 24/7. Llama a Edwing García.',
+} = Astro.props
+
+const SITE_URL = 'https://cerrajeriagamaexpress.com' // actualizar con dominio real
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Locksmith',
+  name: 'Cerrajería GAMA Express',
+  alternateName: 'GAMA Express',
+  description,
+  url: SITE_URL,
+  telephone: ['+525522500001', '+525610354505'],
+  founder: { '@type': 'Person', name: 'Edwing García' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Héroes de Ozumbilla',
+    addressLocality: 'Tecámac',
+    addressRegion: 'Estado de México',
+    addressCountry: 'MX',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 19.6228189,
+    longitude: -99.0172979,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  sameAs: ['https://wa.me/525522500001'],
+  priceRange: '$$',
+  areaServed: [
+    'Tecámac', 'Héroes de Ozumbilla', 'Real Verona', 'Bosques de los Héroes',
+    'Ecatepec', 'Tlalnepantla', 'Ciudad de México',
+  ],
+  hasMap: `https://www.google.com/maps?q=19.6228189,-99.0172979`,
+}
 ---
 <!doctype html>
 <html lang="es">
@@ -8,14 +50,17 @@ const { title = 'Cerrajería GAMA Express | Apertura de Chapas y Llaves con Chip
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#09090B" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#FBBB24" />
+    <link rel="canonical" href={SITE_URL} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={SITE_URL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="es_MX" />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content={`${SITE_URL}/og-image.jpg`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
@@ -23,12 +68,14 @@ const { title = 'Cerrajería GAMA Express | Apertura de Chapas y Llaves con Chip
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:image" content={`${SITE_URL}/og-image.jpg`} />
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
 
+    <!-- Schema: LocalBusiness -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   </head>
   <body class="bg-base text-white font-sans antialiased">
     <slot />
