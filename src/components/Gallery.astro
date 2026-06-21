@@ -1,9 +1,25 @@
 ---
 const photos = [
-  { label: 'Apertura de chapa de auto', hint: 'Foto abriendo puerta de carro' },
-  { label: 'Llave con chip programada', hint: 'Foto del equipo de codificación' },
-  { label: 'Reparación de control remoto', hint: 'Foto del control terminado' },
-  { label: 'Copia de chapa', hint: 'Foto de llaves duplicadas' },
+  {
+    src: '/images/fotos-llaves.jpg',
+    label: 'Cientos de modelos de llaves',
+    hint: 'El catálogo más completo de la zona',
+  },
+  {
+    src: '/images/foto-estacion-trabajo.jpg',
+    label: 'Equipo de última generación',
+    hint: 'Máquinas de corte profesional JMX y más',
+  },
+  {
+    src: '/images/fotos-chapas.jpg',
+    label: 'Chapas y cerraduras',
+    hint: 'Stock completo para autos y casas',
+  },
+  {
+    src: '/images/fotos-controles.jpg',
+    label: 'Fundas y controles',
+    hint: 'Protección para tu llave y control remoto',
+  },
 ]
 ---
 
@@ -15,18 +31,27 @@ const photos = [
         <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-gray-900">
           Nuestro trabajo
         </h2>
-        <p class="text-gray-600 font-semibold text-sm mt-2">Reemplaza estas fotos con imágenes reales del trabajo de Edwing</p>
       </div>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
       {photos.map((p) => (
-        <div class="group bg-amber-50 border-2 border-dashed border-amber-200 rounded-xl overflow-hidden aspect-square flex flex-col items-center justify-center gap-2 p-4 hover:border-amber-400 hover:bg-amber-100 transition-colors cursor-default">
-          <svg class="w-10 h-10 text-amber-300 group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0z" />
-          </svg>
-          <p class="text-amber-800 text-xs font-bold text-center leading-snug">{p.label}</p>
-          <p class="text-amber-500 text-xs text-center leading-snug">{p.hint}</p>
+        <div class="group flex flex-col gap-2">
+          <div class="relative rounded-xl overflow-hidden aspect-square shadow-sm">
+            <img
+              src={p.src}
+              alt={p.label}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent hidden sm:flex flex-col justify-end p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p class="text-white text-base font-bold leading-snug">{p.label}</p>
+              <p class="text-white/70 text-sm leading-snug mt-0.5">{p.hint}</p>
+            </div>
+          </div>
+          <div class="sm:hidden px-1">
+            <p class="text-gray-900 text-sm font-bold leading-snug">{p.label}</p>
+            <p class="text-gray-500 text-xs leading-snug mt-0.5">{p.hint}</p>
+          </div>
         </div>
       ))}
     </div>
