@@ -4,6 +4,7 @@ import '../styles/global.css'
 const {
   title = 'Cerrajería GAMA Express | Cerrajero en Tecámac y Héroes de Ozumbilla',
   description = 'Cerrajero a domicilio en Tecámac, Héroes de Ozumbilla y zona norte CDMX. Apertura de chapas, llaves con chip, clonación de controles. Servicio express 24/7. Llama a Edwing García.',
+  noindex = false,
 } = Astro.props
 
 const SITE_URL = 'https://cerrajeriagamaexpress.com' // actualizar con dominio real
@@ -50,7 +51,7 @@ const schema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <meta name="theme-color" content="#FBBB24" />
     <link rel="canonical" href={SITE_URL} />
 

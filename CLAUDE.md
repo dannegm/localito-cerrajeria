@@ -12,9 +12,10 @@ npm run preview  # Preview the production build
 
 ## Stack
 
-- **Astro 4** (static output) + **Tailwind CSS 3**
+- **Astro 4** (`output: 'hybrid'` — static by default, pages opt into SSR with `export const prerender = false`) + **Tailwind CSS 3**
 - **JavaScript only** — no TypeScript, no `.ts` files
-- Deployed to **Vercel** (auto-detects Astro, no adapter needed for static)
+- Deployed to **Vercel** using `@astrojs/vercel/serverless` (needed because `src/pages/pago.astro` is server-rendered on demand; everything else still prerenders to static HTML)
+- Package manager is **pnpm** (`pnpm-lock.yaml`) — use `pnpm add`/`pnpm install`, not `npm`
 
 ## Architecture
 
@@ -48,3 +49,12 @@ src/
 - **Phones:** 55 2250 0001 / 56 1035 4505 (Mexico, +52)
 - **WhatsApp:** `https://wa.me/525522500001`
 - Phone numbers are repeated in `Nav.astro`, `Hero.astro`, `CTA.astro`, and `Footer.astro` — update all four if they change.
+
+## Payment page (`src/pages/pago.astro`)
+
+QR-only page showing bank transfer + in-store deposit details. Access is gated server-side:
+
+- `PAYMENT_TOKEN` env var (set in Vercel project settings) must match `?token=` on first visit.
+- On match, sets an HMAC-signed, `httpOnly` cookie (30 min) and redirects to the clean URL — the tokenized URL never renders the sensitive data.
+- Without a valid token or cookie, redirects to `/`. Response sends `Cache-Control: no-store`.
+- Changing `PAYMENT_TOKEN` invalidates the current QR; requires a new deploy to take effect (it's read at request time from the server env, not baked into static HTML).
