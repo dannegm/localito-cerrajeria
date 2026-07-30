@@ -15,11 +15,11 @@ const PAYMENT_TOKEN = import.meta.env.PAYMENT_TOKEN || 'GAMA-PAGO-7F3K9Q2X'
 const SESSION_COOKIE = 'gama_pago_session'
 const SESSION_MS = 30 * 60 * 1000
 
-function sign(value) {
+function sign(value: string) {
   return crypto.createHmac('sha256', PAYMENT_TOKEN).update(value).digest('hex')
 }
 
-function readSessionExpiry(cookieValue) {
+function readSessionExpiry(cookieValue: string | undefined) {
   if (!cookieValue) return null
   const [expiresAtRaw, signature] = cookieValue.split('.')
   if (!expiresAtRaw || !signature || sign(expiresAtRaw) !== signature) return null
@@ -98,7 +98,7 @@ const stores = ['OXXO', 'Soriana', 'Kiosko', 'Chedraui', 'Farmacias del Ahorro',
     <div id="pago-app" class="max-w-md mx-auto">
       <div class="relative bg-navy rounded-3xl p-6 sm:p-8 text-center overflow-hidden mb-8">
         <div class="absolute inset-0 bg-hero-glow pointer-events-none opacity-70" aria-hidden="true"></div>
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-brand/70 to-transparent" aria-hidden="true"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-linear-to-r from-transparent via-brand/70 to-transparent" aria-hidden="true"></div>
 
         <div class="relative">
           <div class="inline-flex items-center justify-center p-4 rounded-2xl bg-brand/20 border border-brand/30 mb-4 mx-auto">
@@ -222,7 +222,7 @@ const stores = ['OXXO', 'Soriana', 'Kiosko', 'Chedraui', 'Farmacias del Ahorro',
 
   <Footer />
 
-  <script define:vars={{ sessionExpiresAt }}>
+  <script is:inline define:vars={{ sessionExpiresAt }}>
     (function () {
       // El servidor ya validó el acceso; esto solo agenda la salida cuando
       // la sesión caduque mientras la pestaña sigue abierta.
@@ -236,9 +236,11 @@ const stores = ['OXXO', 'Soriana', 'Kiosko', 'Chedraui', 'Farmacias del Ahorro',
   <script>
     document.querySelectorAll('.copy-btn').forEach(function (btn) {
       btn.addEventListener('click', async function () {
-        var targetId = btn.getAttribute('data-copy-target')
-        var input = document.getElementById(targetId)
-        if (!input) return
+        const targetId = btn.getAttribute('data-copy-target')
+        const input = targetId && document.getElementById(targetId)
+        const copyIcon = btn.querySelector('.copy-icon')
+        const checkIcon = btn.querySelector('.check-icon')
+        if (!(input instanceof HTMLInputElement) || !copyIcon || !checkIcon) return
 
         try {
           await navigator.clipboard.writeText(input.value)
@@ -249,8 +251,6 @@ const stores = ['OXXO', 'Soriana', 'Kiosko', 'Chedraui', 'Farmacias del Ahorro',
           input.setAttribute('readonly', '')
         }
 
-        var copyIcon = btn.querySelector('.copy-icon')
-        var checkIcon = btn.querySelector('.check-icon')
         copyIcon.classList.add('hidden')
         checkIcon.classList.remove('hidden')
 

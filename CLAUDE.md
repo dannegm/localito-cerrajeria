@@ -12,10 +12,11 @@ npm run preview  # Preview the production build
 
 ## Stack
 
-- **Astro 4** (`output: 'hybrid'` — static by default, pages opt into SSR with `export const prerender = false`) + **Tailwind CSS 3**
+- **Astro 7** (`output: 'static'` — prerendered by default, pages opt into on-demand SSR with `export const prerender = false`) + **Tailwind CSS 4**
 - **JavaScript only** — no TypeScript, no `.ts` files
-- Deployed to **Vercel** using `@astrojs/vercel/serverless` (needed because `src/pages/pago.astro` is server-rendered on demand; everything else still prerenders to static HTML)
+- Deployed to **Vercel** using the `@astrojs/vercel` adapter (needed because `src/pages/pago.astro` is server-rendered on demand; everything else still prerenders to static HTML)
 - Package manager is **pnpm** (`pnpm-lock.yaml`) — use `pnpm add`/`pnpm install`, not `npm`
+- `package.json` pins `engines.node` to `20.x` so Vercel builds Serverless Functions with a runtime the adapter supports
 
 ## Architecture
 
